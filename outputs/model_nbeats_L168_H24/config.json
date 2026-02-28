@@ -1,0 +1,32 @@
+{
+    "stack_types": [
+        "trend_block",
+        "seasonality_block"
+    ],
+    "nb_blocks_per_stack": 3,
+    "num_block_layers": 4,
+    "hidden_size": 64,
+    "thetas_dims": [
+        4,
+        8
+    ],
+    "share_weights_in_stack": false,
+    "input_shape": [
+        [
+            168,
+            1
+        ],
+        [
+            168,
+            35
+        ],
+        [
+            24,
+            35
+        ]
+    ],
+    "architectures": [
+        "nctional"
+    ],
+    "model_type": "nbeats"
+}

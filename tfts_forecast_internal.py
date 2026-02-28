@@ -42,7 +42,8 @@ from tfts.trainer import KerasTrainer
 
 DATA_CSV = r"load_forecasting_dataset_corrected.csv"
 
-MODELS: Union[str, List[str]] = "informer"
+# error: 'seq2seq', 'deep_ar', 'autoformer', 'patch_tst', 'itransformer', 'dlinear', 'rwkv', 'diffusion', 'tide', 'gpt'
+MODELS: Union[str, List[str]] = ['wavenet']  # ['rnn', 'tcn', 'wavenet', 'unet', 'transformer', 'bert', 'informer', 'tft', 'nbeats'
 
 CONFIG: Dict[str, Any] = dict(
     seed=42,
@@ -209,6 +210,7 @@ def mape(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
 def load_prepare(csv_path: str) -> Tuple[pd.DataFrame, str]:
     df = pd.read_csv(csv_path)
+    # df = df.iloc[0:1000, :]
 
     ts_col = _find_col(df, ["Timestamp", "timestamp", "Date", "Datetime"])
     hour_col = _find_col(df, ["Hour", "Hour of D", "Hour of Day", "hour"])
@@ -373,7 +375,7 @@ def run_one_model(model_name: str, df: pd.DataFrame, target_col: str, cfg: Dict[
     print(f"Saved model:       {model_dir}")
 
     keras_dir = os.path.join(cfg["output_dir"], f"keras_savedmodel_{model_name}_L{L}_H{H}")
-    trainer.model.save(keras_dir, include_optimizer=False, save_format="tf")
+    # trainer.model.save(keras_dir, include_optimizer=False, save_format="tf")
     print(f"Saved keras model: {keras_dir}")
 
     if bool(cfg.get("save_plot", False)):
