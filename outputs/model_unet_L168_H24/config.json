@@ -1,0 +1,39 @@
+{
+    "units": 64,
+    "kernel_size": 2,
+    "depth": 2,
+    "pool_sizes": [
+        2,
+        4
+    ],
+    "upsampling_factors": [
+        2,
+        2,
+        2
+    ],
+    "num_attention_heads": 4,
+    "attention_probs_dropout_prob": 0.1,
+    "hidden_dropout_prob": 0.1,
+    "use_residual": false,
+    "use_attention": false,
+    "use_se": false,
+    "use_layer_norm": false,
+    "input_shape": [
+        [
+            168,
+            1
+        ],
+        [
+            168,
+            35
+        ],
+        [
+            24,
+            35
+        ]
+    ],
+    "architectures": [
+        "nctional"
+    ],
+    "model_type": "unet"
+}

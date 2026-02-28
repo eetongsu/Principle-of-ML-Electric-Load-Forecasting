@@ -1,0 +1,39 @@
+{
+    "dilation_rates": [
+        1,
+        2,
+        4,
+        8
+    ],
+    "kernel_sizes": [
+        2,
+        2,
+        2,
+        2
+    ],
+    "filters": 128,
+    "dense_hidden_size": 64,
+    "scheduled_sampling": 1.0,
+    "use_attention": false,
+    "attention_size": 64,
+    "num_attention_heads": 2,
+    "attention_probs_dropout_prob": 0.0,
+    "input_shape": [
+        [
+            168,
+            1
+        ],
+        [
+            168,
+            35
+        ],
+        [
+            24,
+            35
+        ]
+    ],
+    "architectures": [
+        "nctional"
+    ],
+    "model_type": "wavenet"
+}

@@ -1,0 +1,27 @@
+{
+    "rnn_hidden_size": 64,
+    "rnn_type": "gru",
+    "bi_direction": false,
+    "dense_hidden_size": 128,
+    "num_stacked_layers": 1,
+    "scheduled_sampling": 0.0,
+    "use_attention": false,
+    "input_shape": [
+        [
+            168,
+            1
+        ],
+        [
+            168,
+            35
+        ],
+        [
+            24,
+            35
+        ]
+    ],
+    "architectures": [
+        "nctional"
+    ],
+    "model_type": "rnn"
+}

@@ -1,0 +1,34 @@
+{
+    "dilation_rates": [
+        1,
+        2,
+        4,
+        8
+    ],
+    "kernel_sizes": [
+        2,
+        2,
+        2,
+        2
+    ],
+    "filters": 128,
+    "dense_hidden_size": 64,
+    "input_shape": [
+        [
+            168,
+            1
+        ],
+        [
+            168,
+            35
+        ],
+        [
+            24,
+            35
+        ]
+    ],
+    "architectures": [
+        "nctional"
+    ],
+    "model_type": "tcn"
+}
