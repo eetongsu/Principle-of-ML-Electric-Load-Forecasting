@@ -210,26 +210,8 @@ def mape(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
 def load_prepare(csv_path: str) -> Tuple[pd.DataFrame, str]:
     df = pd.read_csv(csv_path)
-    # df = df.iloc[0:1000, :]
-
-    ts_col = _find_col(df, ["Timestamp", "timestamp", "Date", "Datetime"])
-    hour_col = _find_col(df, ["Hour", "Hour of D", "Hour of Day", "hour"])
-    target_col = _find_col(df, ["Load Demand (kW)", "Load Demand", "LoadDemand", "Load (kW)", "Load"])
-
-    if ts_col is None or target_col is None:
-        raise ValueError(f"Missing required columns. Found: {list(df.columns)}")
-
-    dt = pd.to_datetime(df[ts_col], errors="coerce")
-    if dt.isna().any():
-        raise ValueError(f"Failed to parse some timestamps from '{ts_col}'")
-
-    if hour_col is not None:
-        hour = pd.to_numeric(df[hour_col], errors="coerce").fillna(0).astype(int).clip(0, 23)
-        dt = dt + pd.to_timedelta(hour, unit="h")
-
-    df["_dt"] = dt
-    df = df.sort_values("_dt").reset_index(drop=True).set_index("_dt")
-
+    df['Timestamp'] = pd.to_datetime(df['Timestamp'])
+    df = df.set_index('Timestamp')
     df = create_time_features(df)
 
     if "Season" in df.columns:
@@ -239,6 +221,7 @@ def load_prepare(csv_path: str) -> Tuple[pd.DataFrame, str]:
         df[c] = pd.to_numeric(df[c], errors="coerce")
     df = df.ffill().bfill().fillna(0.0)
 
+    target_col = "Load Demand (kW)"
     return df, target_col
 
 def split_chrono(df: pd.DataFrame, test_size: float) -> Tuple[pd.DataFrame, pd.DataFrame]:
